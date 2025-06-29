@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Undangan Digital Mobile View - Video Nyatu</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background: #fff;
+      display: flex;
+      justify-content: center;
+      font-family: 'Inter', sans-serif;
+    }
+    .mobile-wrapper {
+      width: 375px; /* fixed mobile width */
+      height: 100vh;
+      overflow-y: scroll;
+      -webkit-overflow-scrolling: touch;
+      border: 1px solid #ccc;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      background: #000;
+    }
+    video {
+      display: block;        /* hilangkan spasi inline */
+      width: 100%;
+      height: auto;
+      margin: 0;             /* hilangkan margin default */
+      padding: 0;            /* hilangkan padding */
+      border-radius: 0;      /* hilangkan border-radius supaya benar-benar nyatu */
+      object-fit: cover;
+      background-color: #000; /* agar tidak ada latar putih saat loading */
+      vertical-align: bottom; /* menghilangkan gap vertikal jika ada */
+    }
+  </style>
+</head>
+<body>
+  <div class="mobile-wrapper">
+    <video autoplay muted loop playsinline>
+      <source src="video1.mp4" type="video/mp4" />
+      Browser Anda tidak mendukung tag video.
+    </video>
+    <video autoplay muted loop playsinline>
+      <source src="video2.mp4" type="video/mp4" />
+    </video>
+    <video autoplay muted loop playsinline>
+      <source src="video3.mp4" type="video/mp4" />
+    </video>
+    <!-- Tambah video lain sesuai kebutuhan -->
+  </div>
+</body>
+</html>
