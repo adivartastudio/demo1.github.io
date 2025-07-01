@@ -3,51 +3,495 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Undangan Digital Mobile View - Video Nyatu</title>
+  <title>Undangan Pernikahan</title>
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet" />
+
   <style>
-    body {
-      margin: 0;
-      padding: 0;
-      background: #fff;
+    * {margin: 0; padding: 0; box-sizing: border-box;}
+    html, body {
+      background: #000;
       display: flex;
       justify-content: center;
-      font-family: 'Inter', sans-serif;
+      line-height: 0;
     }
     .mobile-wrapper {
-      width: 375px; /* fixed mobile width */
-      height: 100vh;
-      overflow-y: scroll;
-      -webkit-overflow-scrolling: touch;
-      border: 1px solid #ccc;
-      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      width: 390px;
       background: #000;
+      overflow-x: hidden;
+      font-size: 0;
     }
-    video {
-      display: block;        /* hilangkan spasi inline */
+    .section video {
       width: 100%;
       height: auto;
-      margin: 0;             /* hilangkan margin default */
-      padding: 0;            /* hilangkan padding */
-      border-radius: 0;      /* hilangkan border-radius supaya benar-benar nyatu */
-      object-fit: cover;
-      background-color: #000; /* agar tidak ada latar putih saat loading */
-      vertical-align: bottom; /* menghilangkan gap vertikal jika ada */
+      display: block;
+    }
+
+    /* Update styling countdown */
+    .countdown-wrapper {
+      background-color: #795a3f;
+      color: #fff;
+      text-align: center;
+      font-family: 'Great Vibes', cursive;
+      padding: 40px 20px;
+    }
+    .countdown-wrapper h2 {
+      font-size: 36px;
+      margin-bottom: 25px;
+      letter-spacing: 1px;
+    }
+    .countdown {
+      display: flex;
+      justify-content: center;
+      gap: 25px;
+      font-weight: 700;
+      font-family: 'Arial', sans-serif;
+      font-size: 20px;
+    }
+    .countdown div {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-width: 60px;
+      background: rgba(255 255 255 / 0.2);
+      padding: 15px 10px;
+      border-radius: 15px;
+      box-shadow: 0 0 10px rgb(0 0 0 / 0.15);
+    }
+    .countdown span {
+      font-size: 36px;
+      line-height: 1;
+      font-weight: 900;
+      font-family: 'Arial Black', Gadget, sans-serif;
+    }
+    .countdown label {
+      margin-top: 6px;
+      font-size: 14px;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      font-weight: 600;
+    }
+
+    iframe {
+      display: block;
+      width: 100% !important;
+      height: 250px !important;
+      border: 0;
+    }
+    .video9-margin-wrapper {
+      background-color: #795a3f;
+      height: 30px;
+      width: 100%;
+    }
+    .guestbook-section {
+      background: #795a3f;
+      padding: 30px 25px 40px;
+      color: white;
+      font-family: Arial, sans-serif;
+    }
+    .guestbook-section h3 {
+      text-align: center;
+      margin-bottom: 35px;
+      font-family: 'Great Vibes', cursive;
+      font-size: 36px;
+      color: white;
+    }
+    #customGuestForm {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      max-width: 360px;
+      margin: 0 auto;
+    }
+    #customGuestForm label {
+      font-weight: 600;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      font-size: 17px;
+      color: #f0e6d2;
+    }
+    #customGuestForm textarea,
+    #customGuestForm select {
+      width: 100%;
+      padding: 14px;
+      border-radius: 10px;
+      border: none;
+      font-size: 16px;
+      resize: vertical;
+      font-family: inherit;
+      box-shadow: inset 0 0 5px rgba(0,0,0,0.3);
+    }
+    #customGuestForm button {
+      background: #6e513e;
+      color: white;
+      border: none;
+      padding: 14px;
+      border-radius: 10px;
+      font-size: 20px;
+      cursor: pointer;
+      font-weight: 700;
+    }
+    #formMessage {
+      text-align: center;
+      margin-top: 12px;
+      display: none;
+      font-weight: 600;
+      font-size: 16px;
+    }
+
+    /* Kotak ucapan putih dengan scroll */
+    #ucapanContainer {
+      margin-top: 30px;
+      padding: 15px;
+      background: white;
+      border-radius: 15px;
+      max-height: 260px; /* tinggi tetap untuk scroll */
+      overflow-y: auto;
+      box-shadow: 0 0 15px rgba(0,0,0,0.15);
+      color: #222;
+    }
+    #ucapanList {
+      list-style: none;
+      padding: 0;
+      color: #222;
+      font-size: 16px;
+      line-height: 1.4;
+    }
+    #ucapanList li {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      background: #f9f9f9;
+      border-radius: 12px;
+      padding: 10px 15px;
+      margin-bottom: 10px;
+      position: relative;
+    }
+    .ucapan-profile {
+      width: 36px;
+      height: 36px;
+      background: #cfc3ad;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      font-size: 20px;
+      color: #795a3f;
+      user-select: none;
+    }
+    .ucapan-text {
+      flex-grow: 1;
+      color: #222;
+      font-size: 15px;
+      font-family: Arial, sans-serif;
+    }
+    .like-button {
+      cursor: pointer;
+      background: transparent;
+      border: none;
+      color: #606060;
+      font-size: 18px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      user-select: none;
+      transition: color 0.3s;
+      padding: 0;
+    }
+    .like-button.liked {
+      color: #065fd4;
+    }
+    .like-button svg {
+      width: 20px;
+      height: 20px;
+      fill: currentColor;
+    }
+    .like-count {
+      font-size: 14px;
+      color: inherit;
+      user-select: none;
+    }
+    /* Update kotak rekap kehadiran */
+    #kehadiranSummary {
+      margin-top: 15px;
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      font-family: Arial, sans-serif;
+      font-weight: 600;
+      font-size: 16px;
+      color: #fff;
+    }
+    #hadirBox, #tidakHadirBox {
+      padding: 12px 25px;
+      border-radius: 12px;
+      min-width: 120px;
+      text-align: center;
+      box-shadow: 0 0 8px rgba(0,0,0,0.2);
+    }
+    #hadirBox {
+      background: #4CAF50;
+    }
+    #tidakHadirBox {
+      background: #f44336;
+    }
+
+    /* Tombol audio melayang di pojok kanan bawah */
+    #audioToggleBtn {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background: rgba(121, 90, 63, 0.85);
+      border: none;
+      border-radius: 50%;
+      width: 56px;
+      height: 56px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+      transition: background 0.3s;
+      z-index: 1000;
+    }
+    #audioToggleBtn:hover {
+      background: rgba(121, 90, 63, 1);
+    }
+    #audioToggleBtn svg {
+      fill: white;
+      width: 28px;
+      height: 28px;
     }
   </style>
 </head>
 <body>
   <div class="mobile-wrapper">
-    <video autoplay muted loop playsinline>
-      <source src="video1.mp4" type="video/mp4" />
-      Browser Anda tidak mendukung tag video.
-    </video>
-    <video autoplay muted loop playsinline>
-      <source src="video2.mp4" type="video/mp4" />
-    </video>
-    <video autoplay muted loop playsinline>
-      <source src="video3.mp4" type="video/mp4" />
-    </video>
-    <!-- Tambah video lain sesuai kebutuhan -->
+    <div class="section"><video autoplay muted loop playsinline><source src="video1.mp4" type="video/mp4" /></video></div>
+    <div class="section"><video class="scroll-video" muted playsinline><source src="video2.mp4" type="video/mp4" /></video></div>
+    <div class="section"><video class="scroll-video" muted playsinline><source src="video3.mp4" type="video/mp4" /></video></div>
+    <div class="section"><video class="scroll-video" muted playsinline><source src="video4.mp4" type="video/mp4" /></video></div>
+
+    <div class="countdown-wrapper">
+      <h2>Menuju Hari Bahagia</h2>
+      <div class="countdown" id="countdown">
+        <div><span id="days">00</span><label>Hari</label></div>
+        <div><span id="hours">00</span><label>Jam</label></div>
+        <div><span id="minutes">00</span><label>Menit</label></div>
+        <div><span id="seconds">00</span><label>Detik</label></div>
+      </div>
+    </div>
+    <div class="section" style="padding: 10px; background: #795a3f;">
+      <h3 style="color: white; text-align: center; margin-bottom: 8px; font-family: Arial, sans-serif;">Lokasi Acara</h3>
+      <div style="border: 3px solid white; border-radius: 8px; overflow: hidden;">
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d63100.24682423798!2d115.1693227948756!3d-8.713811488701259!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2dd24141b224a63b%3A0x38ff9cbe7118bb84!2sPedungan%2C%20Denpasar%20Selatan%2C%20Kota%20Denpasar%2C%20Bali!5e0!3m2!1sid!2sid!4v1751290995820!5m2!1sid!2sid" allowfullscreen="" loading="lazy"></iframe>
+      </div>
+    </div>
+
+    <div class="section"><video class="scroll-video" muted playsinline><source src="video5.mp4" type="video/mp4" /></video></div>
+    <div class="section"><video class="scroll-video" muted playsinline><source src="video6.mp4" type="video/mp4" /></video></div>
+    <div class="section"><video class="scroll-video" muted playsinline><source src="video7.mp4" type="video/mp4" /></video></div>
+    <div class="section"><video class="scroll-video" muted playsinline><source src="video8.mp4" type="video/mp4" /></video></div>
+    <div class="section"><video class="scroll-video" muted playsinline><source src="video9.mp4" type="video/mp4" /></video></div>
+
+    <div class="video9-margin-wrapper"></div>
+
+    <div class="guestbook-section">
+      <h3>Buku Tamu</h3>
+      <form id="customGuestForm">
+        <label>
+          Tuliskan Ucapan
+          <textarea name="entry.1680803747" required placeholder="Tulis ucapanmu di sini..."></textarea>
+        </label>
+        <label>
+          Konfirmasi Kehadiran
+          <select name="entry.51842761" required>
+            <option value="" disabled selected>Pilih hadir/tidak hadir</option>
+            <option value="Hadir">Hadir</option>
+            <option value="Tidak Hadir">Tidak Hadir</option>
+          </select>
+        </label>
+        <button type="submit">Kirim</button>
+        <p id="formMessage"></p>
+      </form>
+
+      <div id="ucapanContainer">
+        <ul id="ucapanList"></ul>
+      </div>
+
+      <div id="kehadiranSummary">
+        <div id="hadirBox">Hadir: 0</div>
+        <div id="tidakHadirBox">Tidak Hadir: 0</div>
+      </div>
+    </div>
+
+    <div class="section"><video class="scroll-video" muted playsinline><source src="video10.mp4" type="video/mp4" /></video></div>
   </div>
+
+  <!-- AUDIO PLAYER DAN TOMBOL MELAYANG -->
+  <audio id="audioPlayer" src="audio.mp3" autoplay loop></audio>
+  <button id="audioToggleBtn" aria-label="Pause Audio" title="Pause Audio">
+    <svg viewBox="0 0 24 24" aria-hidden="true">
+      <rect x="6" y="4" width="4" height="16"></rect>
+      <rect x="14" y="4" width="4" height="16"></rect>
+    </svg>
+  </button>
+  <!-- END AUDIO PLAYER -->
+
+  <script>
+    // Countdown
+    const targetDate = new Date("2026-09-30T10:00:00+08:00");
+    function updateCountdown() {
+      const now = new Date();
+      const distance = targetDate - now;
+      if (distance < 0) return;
+      document.getElementById("days").textContent = String(Math.floor(distance / (1000 * 60 * 60 * 24))).padStart(2, "0");
+      document.getElementById("hours").textContent = String(Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60))).padStart(2, "0");
+      document.getElementById("minutes").textContent = String(Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60))).padStart(2, "0");
+      document.getElementById("seconds").textContent = String(Math.floor((distance % (1000 * 60)) / 1000)).padStart(2, "0");
+    }
+    setInterval(updateCountdown, 1000);
+    updateCountdown();
+
+    // Scroll video play
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        const video = entry.target;
+        if (entry.isIntersecting) {
+          video.currentTime = 0;
+          video.play();
+        } else {
+          video.pause();
+        }
+      });
+    }, { threshold: 0.1 });
+    document.querySelectorAll(".scroll-video").forEach((video) => observer.observe(video));
+
+    // Form Submit
+    const form = document.getElementById('customGuestForm');
+    const message = document.getElementById('formMessage');
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      const formData = new FormData(form);
+      fetch('https://docs.google.com/forms/d/e/1FAIpQLSdwqNsinXVkGOf2wNC68hFPhoOSzVV1egbyzFFbS3B47trNkQ/formResponse', {
+        method: 'POST',
+        mode: 'no-cors',
+        body: formData
+      }).then(() => {
+        message.style.display = 'block';
+        message.style.color = 'lightgreen';
+        message.textContent = 'Terima kasih sudah mengisi buku tamu!';
+        form.reset();
+        loadUcapan(); // refresh ucapan setelah submit
+        loadKehadiran(); // refresh kehadiran setelah submit
+      });
+    });
+
+    // Load ucapan
+    function loadUcapan() {
+      fetch("https://script.google.com/macros/s/AKfycbzNaSlm3LcGm1JJ9FGtKurDy17lXer2CZplvb6vQgE-fHEogk6PFaqD6R5r-ZGvJTt8/exec")
+        .then((res) => res.json())
+        .then((data) => {
+          const ucapanList = document.getElementById("ucapanList");
+          ucapanList.innerHTML = "";
+          data.data.forEach((item) => {
+            const li = document.createElement("li");
+
+            const profileDiv = document.createElement("div");
+            profileDiv.className = "ucapan-profile";
+            profileDiv.textContent = "👤";
+
+            const textDiv = document.createElement("div");
+            textDiv.className = "ucapan-text";
+            textDiv.textContent = item.ucapan;
+
+            const likeBtn = document.createElement("button");
+            likeBtn.className = "like-button";
+            likeBtn.innerHTML = `
+              <svg viewBox="0 0 24 24">
+                <path d="M1 21h4V9H1v12zM23 10c0-1.1-.9-2-2-2h-6.31l.95-4.57.03-.32
+                  c0-.41-.17-.79-.44-1.06L14.17 2 7.59 8.59C7.22 8.95 7 9.45 7 10v9
+                  c0 1.1.9 2 2 2h7c.83 0 1.54-.5 1.84-1.22l3.02-7.05
+                  c.09-.23.14-.47.14-.73v-1z"/>
+              </svg>
+            `;
+            const likeCount = document.createElement("span");
+            likeCount.className = "like-count";
+            likeCount.textContent = "0";
+            likeBtn.appendChild(likeCount);
+
+            likeBtn.addEventListener("click", () => {
+              const isLiked = likeBtn.classList.toggle("liked");
+              let count = parseInt(likeCount.textContent);
+              if (isLiked) {
+                likeCount.textContent = count + 1;
+              } else {
+                likeCount.textContent = Math.max(count - 1, 0);
+              }
+            });
+
+            li.appendChild(profileDiv);
+            li.appendChild(textDiv);
+            li.appendChild(likeBtn);
+
+            ucapanList.appendChild(li);
+          });
+        });
+    }
+    // Load data kehadiran
+    function loadKehadiran() {
+      fetch("https://script.google.com/macros/s/AKfycbzNaSlm3LcGm1JJ9FGtKurDy17lXer2CZplvb6vQgE-fHEogk6PFaqD6R5r-ZGvJTt8/exec")
+        .then(res => res.json())
+        .then(data => {
+          let hadir = 0, tidakHadir = 0;
+          data.data.forEach(item => {
+            if(item.kehadiran.toLowerCase() === 'hadir') hadir++;
+            else if(item.kehadiran.toLowerCase() === 'tidak hadir') tidakHadir++;
+          });
+          document.getElementById("hadirBox").textContent = `Hadir: ${hadir}`;
+          document.getElementById("tidakHadirBox").textContent = `Tidak Hadir: ${tidakHadir}`;
+        });
+    }
+
+    loadUcapan();
+    loadKehadiran();
+    setInterval(() => {
+      loadUcapan();
+      loadKehadiran();
+    }, 10000);
+
+    // AUDIO PLAYER SCRIPT
+    var audio = document.getElementById("audioPlayer");
+    var btn = document.getElementById("audioToggleBtn");
+
+    // Set volume default
+    audio.volume = 0.5;
+
+    btn.addEventListener('click', () => {
+      if (audio.paused) {
+        audio.play();
+        btn.setAttribute('aria-label', 'Pause Audio');
+        btn.setAttribute('title', 'Pause Audio');
+        btn.innerHTML = `
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <rect x="6" y="4" width="4" height="16"></rect>
+            <rect x="14" y="4" width="4" height="16"></rect>
+          </svg>`;
+      } else {
+        audio.pause();
+        btn.setAttribute('aria-label', 'Play Audio');
+        btn.setAttribute('title', 'Play Audio');
+        btn.innerHTML = `
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <polygon points="8,5 19,12 8,19"></polygon>
+          </svg>`;
+      }
+    });
+
+    // Try autoplay, catch if blocked by browser
+    audio.play().catch(() => {
+      // Autoplay gagal, user harus klik tombol play
+    });
+  </script>
 </body>
 </html>
