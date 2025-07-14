@@ -1,0 +1,74 @@
+body {
+  margin: 0;
+  padding: 0;
+  background-color: #fff;
+  font-family: 'Playfair Display', serif;
+  display: flex;
+  justify-content: center;
+}
+
+.c-container {
+  width: 375px;
+  position: relative;
+  overflow: hidden;
+  padding: 32px 24px;
+  box-sizing: border-box;
+  color: #333;
+}
+
+.bg-video {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  object-fit: cover;
+  z-index: -1;
+  filter: brightness(1.2);
+}
+
+.konten {
+  display: flex;
+  flex-direction: column;
+  gap: 48px;
+  align-items: center;
+}
+
+.profil {
+  text-align: center;
+}
+
+.foto {
+  width: 150px;
+  height: 150px;
+  object-fit: cover;
+  border-radius: 100%;
+  border: 4px solid #d4af37;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+  margin-bottom: 16px;
+}
+
+.nama {
+  font-size: 20px;
+  font-family: 'Great Vibes', cursive;
+  color: #b88a00;
+  margin-bottom: 8px;
+}
+
+.deskripsi {
+  font-size: 14px;
+  color: #333;
+  line-height: 1.6;
+}
+
+/* Animasi saat muncul */
+.fade {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: all 1s ease;
+}
+
+.fade.active {
+  opacity: 1;
+  transform: translateY(0);
+}
