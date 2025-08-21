@@ -1,0 +1,22 @@
+/* Reset margin/padding */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Container utama */
+.section-a {
+  position: relative;
+  width: 100%;
+  height: auto; /* tinggi mengikuti video */
+  overflow: hidden;
+}
+
+/* Video background */
+.bg-video {
+  width: 100%;        /* full width */
+  height: auto;       /* pertahankan rasio 16:9 */
+  display: block;
+  object-fit: cover;  /* crop samping kalau perlu */
+}

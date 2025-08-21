@@ -1,0 +1,119 @@
+/* Reset semua margin & padding */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.b-section {
+  background: #fff;
+  padding-top: 30px;      /* jarak atas */
+  padding-bottom: 0;
+  text-align: center;
+  position: relative;
+}
+
+/* Gambar atas - diperbesar */
+.b-decor {
+  width: 150px;
+  max-width: 40%;
+  margin: 0 auto 10px auto;   /* atas 0, bawah sedikit spasi */
+  display: block;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 1s ease, transform 1s ease;
+}
+
+/* Container teks */
+.b-text {
+  max-width: 90%;
+  margin: 0 auto;
+  line-height: 1.6;
+  text-align: center;
+  word-wrap: break-word;
+  hyphens: auto;
+  -webkit-hyphens: auto;
+  -moz-hyphens: auto;
+  word-spacing: 0.05em;
+  padding: 0;              /* hilangkan padding */
+}
+
+/* Sanskrit elegan */
+.sanskrit {
+  font-family: "Georgia", "Times New Roman", serif;
+  font-size: 0.85rem;
+  font-weight: 400;
+  line-height: 1.8;
+  margin: 0 0 5px 0;       /* hilangkan margin atas, bawah sedikit */
+  text-align: center;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 1s ease, transform 1s ease;
+}
+
+/* Referensi */
+.ref {
+  font-size: 0.75rem;
+  font-style: italic;
+  margin: 2px 0 10px 0;     /* kecilkan margin */
+  display: block;
+  text-align: center;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 1s ease, transform 1s ease;
+}
+
+/* Terjemahan */
+.translation {
+  font-family: "Arial", sans-serif;
+  font-size: 0.8rem;
+  line-height: 1.8;
+  margin: 5px 0 0 0;        /* margin atas minimal */
+  text-align: center;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 1s ease, transform 1s ease;
+}
+
+/* Gelombang bawah */
+.wave-bottom {
+  width: 100%;
+  height: 55px;
+  background: maroon;
+  clip-path: polygon(0 65%, 25% 40%, 50% 65%, 75% 40%, 100% 65%, 100% 100%, 0 100%);
+  margin-top: 0;            /* hilangkan margin atas */
+}
+
+/* Responsif tablet/laptop */
+@media (min-width: 768px) {
+  .sanskrit {
+    font-size: 1.1rem;
+    line-height: 2;
+  }
+  .translation {
+    font-size: 1rem;
+    line-height: 2;
+  }
+  .ref {
+    font-size: 0.9rem;
+  }
+}
+
+/* Mobile/HP */
+@media (max-width: 767px) {
+  .sanskrit {
+    font-size: 0.8rem;
+  }
+  .translation {
+    font-size: 0.75rem;
+  }
+  .ref {
+    font-size: 0.7rem;
+  }
+}
+
+/* Animasi terbit untuk teks dan gambar */
+.fade-in-up {
+  opacity: 1 !important;
+  transform: translateY(0) !important;
+}

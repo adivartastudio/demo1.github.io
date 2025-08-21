@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Undangan Pernikahan</title>
+  
+  <!-- Load CSS dari tiap bagian -->
+  <link rel="stylesheet" href="a.css">
+  <link rel="stylesheet" href="b.css">
+
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      width: 100%;
+      overflow-x: hidden;
+      scroll-behavior: smooth;
+      font-family: sans-serif;
+      background: #fff;
+    }
+    #content {
+      width: 100%;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Tempat untuk menampung isi dari a.html dan b.html -->
+  <div id="content"></div>
+
+  <script>
+    async function loadSections() {
+      const container = document.getElementById('content');
+
+      // === Load a.html ===
+      try {
+        const aResponse = await fetch('a.html');
+        let aText = await aResponse.text();
+        // ambil hanya isi <body> tanpa head
+        aText = aText.replace(/.*<body[^>]*>/i, '').replace(/<\/body>.*/i, '');
+        container.insertAdjacentHTML('beforeend', aText);
+      } catch (e) {
+        console.error("Gagal memuat a.html:", e);
+      }
+
+      // === Load b.html ===
+      try {
+        const bResponse = await fetch('b.html');
+        let bText = await bResponse.text();
+        bText = bText.replace(/.*<body[^>]*>/i, '').replace(/<\/body>.*/i, '');
+        container.insertAdjacentHTML('beforeend', bText);
+      } catch (e) {
+        console.error("Gagal memuat b.html:", e);
+      }
+
+      // === Jalankan animasi khusus b.html ===
+      const observer = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+          const targets = entry.target.querySelectorAll(
+            '.b-decor, .sanskrit, .ref, .translation'
+          );
+          if (entry.isIntersecting) {
+            targets.forEach(el => el.classList.add('fade-in-up'));
+          } else {
+            targets.forEach(el => el.classList.remove('fade-in-up'));
+          }
+        });
+      }, { threshold: 0.2 });
+
+      document.querySelectorAll(".b-section").forEach(el => observer.observe(el));
+    }
+
+    loadSections();
+  </script>
+
+</body>
+</html>

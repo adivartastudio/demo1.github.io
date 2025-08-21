@@ -1,0 +1,39 @@
+<div class="b-section">
+  <!-- Gambar atas -->
+  <img src="doa.png" alt="Doa" class="b-decor">
+
+  <!-- Isi teks -->
+  <div class="b-text">
+    <p class="sanskrit">
+      Samāñjantu viśve devāḥ Samāpo hṛdayā samām Samānam astu vo mano Yathā vaḥ susahāsati
+    </p>
+    <p class="ref">[Ṛg Veda X.85.42]</p>
+    <p class="translation">
+      Semoga para dewa menyatukan, semoga hati menyatu seperti air, semoga pikiran bersatu, agar dapat hidup bahagia bersama.
+    </p>
+  </div>
+
+  <!-- Gelombang bawah -->
+  <div class="wave-bottom"></div>
+</div>
+
+<script>
+  // Observer untuk animasi terbit
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.querySelectorAll('.b-decor, .sanskrit, .ref, .translation').forEach(el => {
+          el.classList.add('fade-in-up');
+        });
+      } else {
+        entry.target.querySelectorAll('.b-decor, .sanskrit, .ref, .translation').forEach(el => {
+          el.classList.remove('fade-in-up');
+        });
+      }
+    });
+  }, { threshold: 0.2 });
+
+  document.querySelectorAll(".b-section").forEach(el => observer.observe(el));
+</script>
+
+<link rel="stylesheet" href="b.css">
